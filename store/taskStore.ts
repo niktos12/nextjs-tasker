@@ -9,7 +9,7 @@ export interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: "Новая" | "В Работе" | "Готова" | "Отложена";
+  status: "Новая" | "В Работе" | "Готова" | "Отложено";
 }
 
 interface TaskState {

@@ -1,15 +1,16 @@
 "use client";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-
+import { Plus } from "../Icons/Plus/Plus";
+import { ArrowsUpDown } from "../Icons/ArrowsUpDown/ArrowsUpDown";
 interface TaskTabsProps {
-  onOpenModal: () => void; // Prop to open the modal
+  onOpenModal: () => void;
 }
 
 const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const router = useRouter();
-  const pathname = usePathname(); // Get the current pathname
+  const pathname = usePathname();
 
   const handleTabChange = (path: string) => {
     router.push(path);
@@ -20,19 +21,19 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal }) => {
   };
 
   return (
-    <div className="flex items-center justify-between py-4">
-      <div className="tabs">
+    <div className="flex items-center justify-between py-4 gap-[18px]">
+      <div className="tabs bg-[#F4F4F5] rounded-[10px] p-1">
         <a
           className={`tab tab-bordered ${
-            pathname === "/tasks" ? "tab-active" : ""
+            pathname === "/kanban" ? "bg-white" : ""
           }`}
-          onClick={() => handleTabChange("/tasks")}
+          onClick={() => handleTabChange("/kanban")}
         >
           Задачи
         </a>
         <a
           className={`tab tab-bordered ${
-            pathname === "/grant" ? "tab-active" : ""
+            pathname === "/grant" ? "bg-white" : "hover:bg-white duration-300"
           }`}
           onClick={() => handleTabChange("/grant")}
         >
@@ -40,43 +41,57 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal }) => {
         </a>
         <a
           className={`tab tab-bordered ${
-            pathname === "/table-view" ? "tab-active" : ""
+            pathname === "/dashboard" ? "bg-white" : "hover:bg-white duration-300"
           }`}
-          onClick={() => handleTabChange("/table-view")}
+          onClick={() => handleTabChange("/dashboard")}
         >
           Табличный Вид
         </a>
         <a
           className={`tab tab-bordered ${
-            pathname === "/calendar" ? "tab-active" : ""
+            pathname === "/calendar" ? "bg-white" : "hover:bg-white duration-300"
           }`}
           onClick={() => handleTabChange("/calendar")}
         >
           Календарь
         </a>
       </div>
-
-      <button onClick={onOpenModal} className="btn btn-primary mb-4">
+      <div className="h-[41px] w-[1px] bg-[#D4D4D8]"></div>
+      <button
+        onClick={onOpenModal}
+        className="bg-[#27272A] text-[#F4F4F5] flex flex-row gap-1 font-medium p-4 rounded-[10px] h-11 items-center"
+      >
+        <Plus />
         Добавить задачу
       </button>
 
       <div className="flex items-center ml-4">
-        <button className="btn btn-sm" onClick={toggleSortOrder}>
+        <button className="flex flex-row items-center gap-3 hover:bg-[#F4F4F5] rounded-xl p-1" onClick={toggleSortOrder}>
+          <ArrowsUpDown/>
           {sortOrder === "asc" ? "От А-Я" : "От Я-А"}
         </button>
 
-        <div className="ml-4 flex items-center space-x-2">
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
-            <span className="badge">Высокая</span>
+        <div className="ml-4 flex items-center space-x-2 gap-5">
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 border border-[#E4E4E7] flex items-center justify-center rounded-md">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            </div>
+
+            <span className="font-semibold">Высокая</span>
           </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
-            <span className="badge">Средняя</span>
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 border border-[#E4E4E7] flex items-center justify-center rounded-md">
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+            </div>
+
+            <span className="font-semibold">Средняя</span>
           </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-green-500 mr-1"></div>
-            <span className="badge">Низкая</span>
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 border border-[#E4E4E7] flex items-center justify-center rounded-md">
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+
+            <span className="font-semibold">Низкая</span>
           </div>
         </div>
       </div>
