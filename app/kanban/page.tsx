@@ -22,29 +22,29 @@ const KanbanBoard: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
-  const handleUpdateTask = (updatedTask: Task) => {
-    updateTask(updatedTask);
-    setIsModalOpen(false);
-    setSelectedTask(null);
-  };
+//   const handleUpdateTask = (updatedTask: Task) => {
+//     updateTask(updatedTask);
+//     setIsModalOpen(false);
+//     setSelectedTask(null);
+//   };
   const handleOpenModal = () => {
     setSelectedTask(null);
     setIsModalOpen(true);
   };
 
-  const openTaskModal = () => {
-    setSelectedTask({
-      id: Date.now(),
-      title: "",
-      description: "",
-      complexity: "Low",
-      priority: "Medium",
-      startDate: new Date().toISOString().split("T")[0],
-      endDate: new Date().toISOString().split("T")[0],
-      status: "todo",
-    });
-    setIsModalOpen(true);
-  };
+//   const openTaskModal = () => {
+//     setSelectedTask({
+//       id: Date.now(),
+//       title: "",
+//       description: "",
+//       complexity: "Low",
+//       priority: "Medium",
+//       startDate: new Date().toISOString().split("T")[0],
+//       endDate: new Date().toISOString().split("T")[0],
+//       status: "todo",
+//     });
+//     setIsModalOpen(true);
+//   };
   const handleCreateTask = (task: Task) => {
     addTask(task);
     setIsModalOpen(false);

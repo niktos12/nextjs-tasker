@@ -24,22 +24,22 @@ const Auth: React.FC = () => {
     setShowPassword(!showPassword);
   };
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
+  // const toggleConfirmPasswordVisibility = () => {
+  //   setShowConfirmPassword(!showConfirmPassword);
+  // };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(e.target.value);
-    if (e.target.value !== password) {
-      setError("Пароли не совпадают");
-    } else {
-      setError("");
-    }
-  };
+  // const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setConfirmPassword(e.target.value);
+  //   if (e.target.value !== password) {
+  //     setError("Пароли не совпадают");
+  //   } else {
+  //     setError("");
+  //   }
+  // };
   const login = useAuthStore((state) => state.login);
 
   const handleRegister = () => {

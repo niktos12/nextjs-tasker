@@ -3,7 +3,6 @@ import { useTaskStore } from "@/store/taskStore";
 import SkeletonTask from "../TaskSkeleton/SkeletonTask";
 import TaskFormModal from "../TaskFormModal/TaskFromModal";
 import DeleteTaskModal from "../DeleteTaskModal/DeleteTaskModal";
-import backgroundImage from '../../public/Frame 37865.png'
 
 interface Task {
   id: number;
