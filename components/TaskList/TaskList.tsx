@@ -62,7 +62,8 @@ const TaskList: React.FC = () => {
       <h2 className="text-2xl font-bold mb-4 text-black">Task List</h2>
       <ul>
         {isLoading
-          ? Array.from({ length: 5 }).map((_, index) => (
+          ? Array.from({ length: tasks.length
+           }).map((_, index) => (
               <SkeletonTask key={index} />
             ))
           : tasks.map((task) => (
