@@ -4,6 +4,7 @@ import { useTaskStore } from "@/store/taskStore";
 import TaskFormModal from "@/components/TaskFormModal/TaskFromModal";
 import { FC } from "react";
 import Link from "next/link";
+import Header from "@/components/Header/Header";
 
 interface Task {
   id: number;
@@ -66,6 +67,7 @@ const KanbanBoard: FC = () => {
 
   return (
     <div className="flex flex-col items-center p-4">
+        <Header/>
       <Link href={"/dashboard"}>dashboard</Link>
       <button onClick={handleOpenModal} className="btn btn-primary mb-4">
         Добавить задачу
