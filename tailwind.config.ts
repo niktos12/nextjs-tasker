@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -8,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'background': "url('/nextjs-tasker/app/public/bgImage.png')"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

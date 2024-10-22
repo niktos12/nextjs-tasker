@@ -11,7 +11,7 @@ import BgImg from "@/components/img/bgImage.png";
 import { url } from "inspector";
 import Link from "next/link";
 
-const Auth: React.FC = () => {
+const Register: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,8 +51,8 @@ const Auth: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center page">
       <div className="bg-white w-[652px] h-[878px] rounded-lg flex registr flex-col items-center justify-center ml-[214px]">
-        <div className="w-[370px] h-[346px] flex flex-col items-center gap-12">
-          <h2 className="text-[32px] font-bold mb-4">Авторизация</h2>
+        <div className="w-[370px] h-[428px] flex flex-col items-center gap-12">
+          <h2 className="text-[32px] font-bold mb-4">Регистрация</h2>
           <div className="flex flex-col gap-5">
             <div className="w-[370px] flex flex-col gap-2">
               <input
@@ -77,20 +77,46 @@ const Auth: React.FC = () => {
                   {showPassword ? <CloseEye /> : <FullEye />}
                 </span>
               </div>
-              <a href="#" className="text-teal-500">
-                Восстановить
-              </a>
+              <div className="flex items-center relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Повторите пароль"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  className="w-full px-4 py-2 border border-[#A1A1AA] rounded-xl"
+                />
+                <span
+                  onClick={toggleConfirmPasswordVisibility}
+                  className="absolute right-4 cursor-pointer"
+                >
+                  {showConfirmPassword ? <CloseEye /> : <FullEye />}
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-3 items-center">
+              <CheckBox />
+              <p className="text-sm ">
+                Согласен с{" "}
+                <a href="#" className="text-teal-500">
+                  условием пользования
+                </a>{" "}
+                и{" "}
+                <a href="#" className="text-teal-500">
+                  хранения информации
+                </a>{" "}
+                о клиенте
+              </p>
             </div>
             <div className="flex flex-col gap-2 font-semibold">
               <button
                 onClick={handleRegister}
                 className="w-full bg-teal-500 text-white p-2 rounded-xl"
               >
-                Войти
+                Регистрация
               </button>
-              <Link href={"/register"}>
+              <Link href={"/auth"}>
                 <button className="w-full bg-white text-black p-2 rounded-xl">
-                  Регистрация
+                  Авторизация
                 </button>
               </Link>
             </div>
@@ -101,4 +127,4 @@ const Auth: React.FC = () => {
   );
 };
 
-export default Auth;
+export default Register;
