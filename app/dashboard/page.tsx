@@ -13,7 +13,7 @@ interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: "todo" | "in-progress" | "done" | "postponed";
+  status: "Новая" | "В Работе" | "Готова" | "Отложена";
 }
 
 const Dashboard: React.FC = () => {
@@ -45,18 +45,6 @@ const Dashboard: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleCreateTask}
-        task={
-          selectedTask || {
-            id: Date.now(),
-            title: "",
-            description: "",
-            complexity: "",
-            priority: "",
-            startDate: "",
-            endDate: "",
-            status: "todo",
-          }
-        }
       />
     </div>
   );

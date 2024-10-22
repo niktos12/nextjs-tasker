@@ -9,7 +9,7 @@ export interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: "todo" | "in-progress" | "done" | "postponed";
+  status: "Новая" | "В Работе" | "Готова" | "Отложена";
 }
 
 interface TaskState {
@@ -26,7 +26,7 @@ export const useTaskStore = create<TaskState>()(
       tasks: [],
       addTask: (task) =>
         set((state) => ({
-          tasks: [...state.tasks, { ...task, status: "todo" }],
+          tasks: [...state.tasks, { ...task, status: "Новая" }],
         })),
       updateTask: (task) =>
         set((state) => ({

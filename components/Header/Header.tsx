@@ -2,7 +2,7 @@ import { Search } from "../Icons/Search/Search";
 
 const Header = () => {
   return (
-    <div className="flex flex-row justify-between px-5 py-6 bg-[#F4F4F5] rounded-[30px] w-full items-center">
+    <div className="flex flex-row justify-between px-5 py-6 bg-[#F4F4F5] rounded-[30px] w-full items-center m-8">
       <div className="flex flex-row items-center gap-3">
         <img src="/user.png" />
         <p className="font-semibold">Олег Олегов</p>

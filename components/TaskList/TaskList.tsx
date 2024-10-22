@@ -3,6 +3,7 @@ import { useTaskStore } from "@/store/taskStore";
 import SkeletonTask from "../TaskSkeleton/SkeletonTask";
 import TaskFormModal from "../TaskFormModal/TaskFromModal";
 import DeleteTaskModal from "../DeleteTaskModal/DeleteTaskModal";
+import EditTaskModal from "../EditTaskModal/EditTaskModal";
 
 interface Task {
   id: number;
@@ -12,7 +13,7 @@ interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: "todo" | "in-progress" | "done" | "postponed";
+  status: "Новая" | "В Работе" | "Готова" | "Отложена";
 }
 
 const TaskList: React.FC = () => {
@@ -62,8 +63,7 @@ const TaskList: React.FC = () => {
       <h2 className="text-2xl font-bold mb-4 text-black">Task List</h2>
       <ul>
         {isLoading
-          ? Array.from({ length: tasks.length
-           }).map((_, index) => (
+          ? Array.from({ length: tasks.length }).map((_, index) => (
               <SkeletonTask key={index} />
             ))
           : tasks.map((task) => (
@@ -93,7 +93,7 @@ const TaskList: React.FC = () => {
             ))}
       </ul>
       {selectedTask && (
-        <TaskFormModal
+        <EditTaskModal
           isOpen={isEditModalOpen}
           onClose={() => {
             setIsEditModalOpen(false);

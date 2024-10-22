@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 interface Task {
@@ -12,23 +12,36 @@ interface Task {
   status: "Новая" | "В Работе" | "Готова" | "Отложена";
 }
 
-interface TaskFormModalProps {
+interface EditTaskModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (task: Task) => void;
+  task: Task;
 }
 
-const TaskFormModal: React.FC<TaskFormModalProps> = ({
+const EditTaskModal: React.FC<EditTaskModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
+  task,
 }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [complexity, setComplexity] = useState("Низкая");
-  const [priority, setPriority] = useState("Низкий");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [complexity, setComplexity] = useState(task.complexity);
+  const [priority, setPriority] = useState(task.priority);
+  const [startDate, setStartDate] = useState(task.startDate);
+  const [endDate, setEndDate] = useState(task.endDate);
+
+  useEffect(() => {
+    if (task) {
+      setTitle(task.title);
+      setDescription(task.description);
+      setComplexity(task.complexity);
+      setPriority(task.priority);
+      setStartDate(task.startDate);
+      setEndDate(task.endDate);
+    }
+  }, [task]);
 
   const handleSubmit = () => {
     if (!title || !description) {
@@ -36,52 +49,26 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
       return;
     }
 
-    const newTask: Task = {
-      id: Date.now(),
+    const updatedTask: Task = {
+      ...task,
       title,
       description,
       complexity,
       priority,
       startDate,
       endDate,
-      status: "Новая", // Статус по умолчанию для новой задачи
     };
 
-    onSubmit(newTask);
+    onSubmit(updatedTask);
     onClose();
-    setTitle("");
-    setDescription("");
-    setComplexity("Низкая");
-    setPriority("Низкий");
-    setStartDate("");
-    setEndDate("");
-  };
-
-  const getComplexityColor = (complexity: string) => {
-    switch (complexity) {
-      case "Высокая":
-        return "bg-red-500";
-      case "Средняя":
-        return "bg-orange-500";
-      case "Низкая":
-        return "bg-green-500";
-      default:
-        return "bg-red-500";
-    }
   };
 
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-      onClick={onClose} // Add click handler to the background
-    >
-      <div
-        className="bg-white p-8 rounded-lg shadow-md w-96"
-        onClick={(e) => e.stopPropagation()} // Prevent click on modal content from closing it
-      >
-        <h2 className="text-2xl font-bold mb-4 text-black">Create Task</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 className="text-2xl font-bold mb-4 text-black">Edit Task</h2>
         <input
           type="text"
           placeholder="Title"
@@ -95,27 +82,18 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
           onChange={(e) => setDescription(e.target.value)}
           className="textarea textarea-bordered w-full mb-4 text-black"
         />
-
         <div className="mb-4">
           <p className="text-black">Сложность:</p>
-          <div className="flex items-center space-x-2 mt-2">
-            <div
-              className={`w-3 h-3 rounded-full ${getComplexityColor(
-                complexity
-              )}`}
-            ></div>
-            <select
-              value={complexity}
-              onChange={(e) => setComplexity(e.target.value)}
-              className="select select-bordered w-full text-black"
-            >
-              <option value="Высокая">Высокая</option>
-              <option value="Средняя">Средняя</option>
-              <option value="Низкая">Низкая</option>
-            </select>
-          </div>
+          <select
+            value={complexity}
+            onChange={(e) => setComplexity(e.target.value)}
+            className="select select-bordered w-full text-black"
+          >
+            <option value="Высокая">Высокая</option>
+            <option value="Средняя">Средняя</option>
+            <option value="Низкая">Низкая</option>
+          </select>
         </div>
-
         <div className="mb-4">
           <p className="text-black">Приоритет:</p>
           <select
@@ -128,7 +106,6 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
             <option value="Низкий">Низкий</option>
           </select>
         </div>
-
         <input
           type="date"
           value={startDate}
@@ -141,12 +118,11 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
           onChange={(e) => setEndDate(e.target.value)}
           className="input input-bordered w-full mb-4 text-black"
         />
-
         <button
           onClick={handleSubmit}
           className="btn btn-primary w-full mb-2 text-black"
         >
-          Create Task
+          Save Changes
         </button>
         <button
           onClick={onClose}
@@ -160,4 +136,4 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
   );
 };
 
-export default TaskFormModal;
+export default EditTaskModal;
