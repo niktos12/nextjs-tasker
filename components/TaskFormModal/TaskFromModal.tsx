@@ -9,14 +9,14 @@ interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: string;
+  status: "todo" | "in-progress" | "done" | "postponed";
 }
 
 interface TaskFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (task: Task) => void;
-  task?: Task;
+  task: Task;
 }
 
 const TaskFormModal: React.FC<TaskFormModalProps> = ({
@@ -52,16 +52,23 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
       priority,
       startDate,
       endDate,
-      status: "Pending",
+      status: task.status,
     };
     onSubmit(newTask);
-    setTitle("");
-    setDescription("");
-    setComplexity("low");
-    setPriority("low");
-    setStartDate("");
-    setEndDate("");
     onClose();
+  };
+
+  const getComplexityColor = (complexity: string) => {
+    switch (complexity) {
+      case "high":
+        return "bg-red-500";
+      case "medium":
+        return "bg-orange-500";
+      case "low":
+        return "bg-green-500";
+      default:
+        return "bg-red-500";
+    }
   };
 
   if (!isOpen) return null;
@@ -70,7 +77,7 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-4 text-black">
-          {task ? "Edit Task" : "Create Task"}
+          {task.id ? "Edit Task" : "Create Task"}
         </h2>
         <input
           type="text"
@@ -85,43 +92,32 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
           onChange={(e) => setDescription(e.target.value)}
           className="textarea textarea-bordered w-full mb-4 text-black"
         />
-        <select
-          value={complexity}
-          onChange={(e) => setComplexity(e.target.value)}
-          className="select select-bordered w-full mb-4 text-black"
-        >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <select
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-          className="select select-bordered w-full mb-4 text-black"
-        >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <input
-          type="date"
-          placeholder="Start Date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          className="input input-bordered w-full mb-4 text-black"
-        />
-        <input
-          type="date"
-          placeholder="End Date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          className="input input-bordered w-full mb-4 text-black"
-        />
+
+        <div className="mb-4">
+          <p className="text-black">Сложность:</p>
+          <div className="flex items-center space-x-2 mt-2">
+            <div
+              className={`w-3 h-3 rounded-full ${getComplexityColor(
+                complexity
+              )}`}
+            ></div>
+            <select
+              value={complexity}
+              onChange={(e) => setComplexity(e.target.value)}
+              className="select select-bordered w-full text-black"
+            >
+              <option value="high">Высокая</option>
+              <option value="medium">Средняя</option>
+              <option value="low">Низкая</option>
+            </select>
+          </div>
+        </div>
+
         <button
           onClick={handleSubmit}
           className="btn btn-primary w-full mb-2 text-black"
         >
-          {task ? "Update Task" : "Create Task"}
+          {task.id ? "Update Task" : "Create Task"}
         </button>
         <button
           onClick={onClose}

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface Task {
+export interface Task {
   id: number;
   title: string;
   description: string;
@@ -9,7 +9,7 @@ interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: string;
+  status: "todo" | "in-progress" | "done" | "postponed";
 }
 
 interface TaskState {
@@ -17,22 +17,34 @@ interface TaskState {
   addTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (id: number) => void;
+  moveTask: (id: number, status: Task["status"]) => void;
 }
 
 export const useTaskStore = create<TaskState>()(
   persist(
     (set) => ({
       tasks: [],
-      addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
+      addTask: (task) =>
+        set((state) => ({
+          tasks: [...state.tasks, { ...task, status: "todo" }],
+        })),
       updateTask: (task) =>
         set((state) => ({
           tasks: state.tasks.map((t) => (t.id === task.id ? task : t)),
         })),
       deleteTask: (id) =>
-        set((state) => ({ tasks: state.tasks.filter((t) => t.id !== id) })),
+        set((state) => ({
+          tasks: state.tasks.filter((t) => t.id !== id),
+        })),
+      moveTask: (id, status) =>
+        set((state) => ({
+          tasks: state.tasks.map((task) =>
+            task.id === id ? { ...task, status } : task
+          ),
+        })),
     }),
     {
-      name: "task-storage",
+      name: "kanban-task-storage",
     }
   )
 );

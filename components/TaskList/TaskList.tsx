@@ -3,6 +3,7 @@ import { useTaskStore } from "@/store/taskStore";
 import SkeletonTask from "../TaskSkeleton/SkeletonTask";
 import TaskFormModal from "../TaskFormModal/TaskFromModal";
 import DeleteTaskModal from "../DeleteTaskModal/DeleteTaskModal";
+import backgroundImage from '../../public/Frame 37865.png'
 
 interface Task {
   id: number;
@@ -12,7 +13,7 @@ interface Task {
   priority: string;
   startDate: string;
   endDate: string;
-  status: string;
+  status: "todo" | "in-progress" | "done" | "postponed";
 }
 
 const TaskList: React.FC = () => {
@@ -46,12 +47,14 @@ const TaskList: React.FC = () => {
   const handleUpdateTask = (updatedTask: Task) => {
     updateTask(updatedTask);
     setIsEditModalOpen(false);
+    setSelectedTask(null);
   };
 
   const handleConfirmDelete = () => {
     if (selectedTask) {
       deleteTask(selectedTask.id);
       setIsDeleteModalOpen(false);
+      setSelectedTask(null);
     }
   };
 
@@ -60,8 +63,7 @@ const TaskList: React.FC = () => {
       <h2 className="text-2xl font-bold mb-4 text-black">Task List</h2>
       <ul>
         {isLoading
-          ? 
-            Array.from({ length: tasks.length }).map((_, index) => (
+          ? Array.from({ length: 5 }).map((_, index) => (
               <SkeletonTask key={index} />
             ))
           : tasks.map((task) => (
@@ -69,11 +71,14 @@ const TaskList: React.FC = () => {
                 key={task.id}
                 className="p-2 border-b border-gray-200 flex justify-between items-center"
               >
-                <span className="font-bold">{task.title}</span> - {task.status}
                 <div>
+                  <span className="font-bold">{task.title}</span> -{" "}
+                  {task.status}
+                </div>
+                <div className="flex space-x-2">
                   <button
                     onClick={() => handleEditTask(task)}
-                    className="btn btn-sm btn-primary mr-2"
+                    className="btn btn-sm btn-primary"
                   >
                     Edit
                   </button>
@@ -90,7 +95,10 @@ const TaskList: React.FC = () => {
       {selectedTask && (
         <TaskFormModal
           isOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
+          onClose={() => {
+            setIsEditModalOpen(false);
+            setSelectedTask(null);
+          }}
           onSubmit={handleUpdateTask}
           task={selectedTask}
         />
@@ -98,7 +106,10 @@ const TaskList: React.FC = () => {
       {selectedTask && (
         <DeleteTaskModal
           isOpen={isDeleteModalOpen}
-          onClose={() => setIsDeleteModalOpen(false)}
+          onClose={() => {
+            setIsDeleteModalOpen(false);
+            setSelectedTask(null);
+          }}
           onConfirm={handleConfirmDelete}
         />
       )}
