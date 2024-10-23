@@ -4,6 +4,8 @@ import { useTaskStore } from "../../store/taskStore";
 import TaskFormModal from "@/components/TaskFormModal/TaskFromModal";
 import TaskList from "@/components/TaskList/TaskList";
 import Link from "next/link";
+import Header from "@/components/Header/Header";
+import TaskTabs from "@/components/TaskTabs/TaskTabs";
 
 interface Task {
   id: number;
@@ -34,13 +36,9 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
-      <Link href={'/lk'}>Личный кабинет</Link>
-      <Link href={'/kanban'}>Kanban</Link>
-      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-      <button onClick={handleOpenModal} className="btn btn-primary mb-4">
-        Create New Task
-      </button>
+    <div className="container flex flex-col">
+      <Header/>
+      <TaskTabs title="Таблица" onOpenModal={handleOpenModal}/>
       <TaskList />
       <TaskFormModal
         isOpen={isModalOpen}

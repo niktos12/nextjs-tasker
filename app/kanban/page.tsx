@@ -94,7 +94,7 @@ const KanbanBoard: FC = () => {
   return (
     <div className="flex flex-col items-center p-4 gap-20 container">
       <Header />
-      <TaskTabs onOpenModal={() => setIsAddModalOpen(true)} />
+      <TaskTabs title="Задачи" onOpenModal={() => setIsAddModalOpen(true)} />
       <div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-[39px] w-full">
           {statuses.map((status) => (
@@ -115,7 +115,7 @@ const KanbanBoard: FC = () => {
                 .map((task) => (
                   <div
                     key={task.id}
-                    className="bg-base-100 py-6 px-4 rounded-xl shadow cursor-pointer"
+                    className="bg-base-100 py-6 px-4 rounded-xl shadow cursor-pointer hover:bg-gray-100"
                     onClick={() => handleTaskClick(task)}
                   >
                     <p className="text-[#A1A1AA] text-sm font-medium">

@@ -5,9 +5,10 @@ import { Plus } from "../Icons/Plus/Plus";
 import { ArrowsUpDown } from "../Icons/ArrowsUpDown/ArrowsUpDown";
 interface TaskTabsProps {
   onOpenModal: () => void;
+  title: string;
 }
 
-const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal }) => {
+const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const router = useRouter();
   const pathname = usePathname();
@@ -23,8 +24,8 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal }) => {
   return (
     <div className="flex items-center justify-start w-full py-4 gap-[18px] flex-col ">
       <div className="flex flex-row justify-start w-full items-center gap-8">
-        <h1 className="text-[32px] font-semibold">Задачи</h1>
-        
+        <h1 className="text-[32px] font-semibold">{title}</h1>
+
         <select className="select select-sm font-semibold text-2xl bg-[#F4F4F5] rounded-[10px]">
           <option>1 Спринт</option>
         </select>
@@ -33,7 +34,7 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal }) => {
         <div className="tabs bg-[#F4F4F5] rounded-[10px] p-1">
           <a
             className={`tab tab-bordered ${
-              pathname === "/kanban" ? "bg-white" : ""
+              pathname === "/kanban" ? "bg-white" : "hover:bg-white duration-300"
             }`}
             onClick={() => handleTabChange("/kanban")}
           >
