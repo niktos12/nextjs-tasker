@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { useTaskStore } from "@/store/taskStore";
 import TaskFormModal from "@/components/TaskFormModal/TaskFromModal";
-import EditTaskModal from "@/components/EditTaskModal/EditTaskModal";
 import { FC } from "react";
 import Header from "@/components/Header/Header";
 import TaskTabs from "@/components/TaskTabs/TaskTabs";
@@ -11,6 +10,8 @@ import { Person } from "@/components/Icons/Person/Person";
 import { Comment } from "@/components/Icons/Comment/Comment";
 import { SmallPlus } from "@/components/Icons/SmallPlus/SmallPlus";
 import { SmallEye } from "@/components/Icons/SmallEye/SmallEye";
+import TaskDetailModal from "@/components/TaskDetailModal/TaskDetailModal";
+import { Plus } from "@/components/Icons/Plus/Plus";
 
 interface Task {
   id: number;
@@ -24,32 +25,30 @@ interface Task {
 }
 
 const KanbanBoard: FC = () => {
-  const { tasks, addTask, deleteTask, updateTask } = useTaskStore();
+  const { tasks, addTask } = useTaskStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
-  const handleOpenModal = () => {
-    setSelectedTask(null);
+  const handleTaskClick = (task: Task) => {
+    setSelectedTask(task);
     setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedTask(null);
+  };
+  const handleCloseAddModal = () => {
+    setIsAddModalOpen(false);
+    setSelectedTask(null);
+  };
   const handleCreateTask = (task: Task) => {
     addTask(task);
     setIsModalOpen(false);
     setSelectedTask(null);
   };
 
-  const handleEditTask = (task: Task) => {
-    setSelectedTask(task);
-    setIsEditModalOpen(true);
-  };
-
-  const handleUpdateTask = (updatedTask: Task) => {
-    updateTask(updatedTask);
-    setIsEditModalOpen(false);
-    setSelectedTask(null);
-  };
   const getComplexityIndicator = (complexity: string) => {
     switch (complexity) {
       case "Высокая":
@@ -68,6 +67,7 @@ const KanbanBoard: FC = () => {
         return null;
     }
   };
+
   const getStatusIndicator = (status: string) => {
     switch (status) {
       case "Новая":
@@ -91,19 +91,12 @@ const KanbanBoard: FC = () => {
 
   const statuses = ["Новая", "В Работе", "Готова", "Отложено"] as const;
 
-  const moveTask = (taskId: number, newStatus: Task["status"]) => {
-    const task = tasks.find((t) => t.id === taskId);
-    if (task) {
-      updateTask({ ...task, status: newStatus });
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center p-4 gap-20">
+    <div className="flex flex-col items-center p-4 gap-20 container">
       <Header />
-      <TaskTabs onOpenModal={handleOpenModal} />
+      <TaskTabs onOpenModal={() => setIsAddModalOpen(true)} />
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-[39px] w-full">
           {statuses.map((status) => (
             <div
               key={status}
@@ -122,7 +115,8 @@ const KanbanBoard: FC = () => {
                 .map((task) => (
                   <div
                     key={task.id}
-                    className="bg-base-100 py-6 px-4 rounded-xl shadow"
+                    className="bg-base-100 py-6 px-4 rounded-xl shadow cursor-pointer"
+                    onClick={() => handleTaskClick(task)}
                   >
                     <p className="text-[#A1A1AA] text-sm font-medium">
                       Приоритет: {task.priority}
@@ -146,7 +140,7 @@ const KanbanBoard: FC = () => {
                                 3
                               </p>
                             </div>
-                            <div className="flex flex-row gap-1 items-center gap-1">
+                            <div className="flex flex-row gap-1 items-center">
                               <SmallEye />
                               <p className="bg-[#F4F4F5] text-[#A1A1AA] rounded-md p-1 h-[18px] flex items-center">
                                 4
@@ -156,57 +150,28 @@ const KanbanBoard: FC = () => {
 
                           <div>{getComplexityIndicator(task.complexity)}</div>
                         </div>
-                        <div className="flex flex-row items-center justify-between w-full"></div>
                       </div>
-                      {/* <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleEditTask(task)}
-                          className="btn btn-sm btn-primary"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => deleteTask(task.id)}
-                          className="btn btn-sm btn-error"
-                        >
-                          Удалить
-                        </button>
-                      </div> */}
-                    </div>
-                    <div className="mt-2 flex space-x-2">
-                      {statuses.map(
-                        (s) =>
-                          s !== status && (
-                            <button
-                              key={s}
-                              onClick={() => moveTask(task.id, s)}
-                              className="bg-[#F4F4F5] px-2 py-1 text-xs rounded text-[#A1A1AA] hover:text-black duration-300"
-                            >
-                              {s}
-                            </button>
-                          )
-                      )}
                     </div>
                   </div>
                 ))}
+              <p className="flex flex-row items-center text-[#3F3F46] font-semibold gap-1 mt-[26px]">
+                <Plus />
+                Добавить Задачу
+              </p>
             </div>
           ))}
         </div>
 
-        <TaskFormModal
+        <TaskDetailModal
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={handleCloseModal}
+          task={selectedTask}
+        />
+        <TaskFormModal
+          isOpen={isAddModalOpen}
+          onClose={handleCloseAddModal}
           onSubmit={handleCreateTask}
         />
-
-        {selectedTask && (
-          <EditTaskModal
-            isOpen={isEditModalOpen}
-            onClose={() => setIsEditModalOpen(false)}
-            onSubmit={handleUpdateTask}
-            task={selectedTask}
-          />
-        )}
       </div>
     </div>
   );

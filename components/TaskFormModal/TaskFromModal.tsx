@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { AddFile } from "../Icons/AddFile/AddFile";
+import { Person } from "../Icons/Person/Person";
+import ModalFile from "@/components/ModalFile/ModalFile";
 
 interface Task {
   id: number;
@@ -30,6 +32,7 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
   const [priority, setPriority] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [openFileModal, setOpenFileModal] = useState(false);
 
   const handleSubmit = () => {
     if (!title || !description) {
@@ -45,7 +48,7 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
       priority,
       startDate,
       endDate,
-      status: "Новая", // Статус по умолчанию для новой задачи
+      status: "Новая",
     };
 
     onSubmit(newTask);
@@ -65,11 +68,14 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
       onClick={onClose}
     >
+      {openFileModal && (
+        <ModalFile isOpen={openFileModal} onClose={() => setOpenFileModal(!openFileModal)} />
+      )}
       <div
-        className="bg-white p-8 rounded-lg shadow-md w-96 flex flex-col gap-8"
+        className="bg-white p-16 rounded-[20px] shadow-md w-[580px] flex flex-col gap-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold mb-4 text-black">Новая задача</h2>
+        <h2 className="text-2xl font-bold text-black">Новая задача</h2>
         <div className="flex flex-col gap-3">
           <input
             type="text"
@@ -80,9 +86,10 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
           />
           <textarea
             placeholder="Описание"
+            rows={4}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="textarea textarea-bordered w-full  text-black"
+            className="textarea textarea-bordered w-full  text-black resize-none px-4 py-[10px] h-[142px]"
           />
         </div>
 
@@ -91,18 +98,18 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
             <select
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="select w-full text-black bg-[#A1A1AA4D] text-[#18181B] font-semibold"
+              className="select select-sm w-full text-black bg-[#A1A1AA4D] text-[#18181B] font-semibold text-sm rounded-lg"
             >
-              <option disabled value="" className="font-semibold">
+              <option disabled value="" className="font-semibold text-sm">
                 Приоритет
               </option>
-              <option value="Высокий" className="font-semibold">
+              <option value="Высокий" className="font-semibold text-sm">
                 Высокий
               </option>
-              <option value="Средний" className="font-semibold">
+              <option value="Средний" className="font-semibold text-sm">
                 Средний
               </option>
-              <option value="Низкий" className="font-semibold">
+              <option value="Низкий" className="font-semibold text-sm">
                 Низкий
               </option>
             </select>
@@ -112,7 +119,7 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
               <select
                 value={complexity}
                 onChange={(e) => setComplexity(e.target.value)}
-                className="select w-full text-black bg-[#A1A1AA4D] text-[#18181B] font-semibold"
+                className="select select-sm w-full text-black bg-[#A1A1AA4D] text-[#18181B] font-semibold text-sm rounded-lg"
               >
                 <option disabled value="" className="font-semibold">
                   Сложность
@@ -132,35 +139,49 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
         </div>
         <div className="flex flex-col gap-3">
           <input
-            type="text"
+            type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            onFocus={(e) => (e.target.type = "date")}
-            onBlur={(e) => (e.target.type = "text")}
             className="input input-bordered w-full  text-black"
             placeholder="Начало"
           />
           <input
-            type="text"
+            type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            onFocus={(e) => (e.target.type = "date")}
-            onBlur={(e) => (e.target.type = "text")}
             className="input input-bordered w-full  text-black"
             placeholder="Конец"
           />
         </div>
-        <input
-          type="text"
-          placeholder="Исполнитель"
-          className="input input-bordered w-full  text-black"
-        />
-        <div className="flex flex-col">
-          <div className="flex flex-row items-center gap-1">
+        <div className="flex flex-col gap-3">
+          <input
+            type="text"
+            placeholder="Исполнитель"
+            className="input input-bordered w-full  text-black"
+          />
+          <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-row gap-1 items-center bg-[#F4F4F5] px-2 py-1 rounded-lg">
+              <Person />
+              <p>Олег Олегов</p>
+            </div>
+            <div className="flex flex-row gap-1 items-center bg-[#F4F4F5] px-2 py-1 rounded-lg">
+              <Person />
+              <p>Никита Шилов</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <div
+            className="flex flex-row items-center gap-1"
+            
+          >
             <p className="px-2 py-1 text-xs text-[#A1A1AA] bg-[#F4F4F5] rounded">
               Файлы
             </p>
-            <AddFile />
+            <div onClick={() => setOpenFileModal(!openFileModal)} className="cursor-pointer">
+              <AddFile />
+            </div>
           </div>
           <div className="flex flex-row gap-[14px]">
             <p className="text-[#27272A] font-medium border-b border-[#27272A]">
@@ -174,18 +195,20 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
             </p>
           </div>
         </div>
-        <button
-          onClick={handleSubmit}
-          className="btn btn-primary w-full mb-2 text-black"
-        >
-          Create Task
-        </button>
-        <button
-          onClick={onClose}
-          className="btn btn-secondary w-full text-black"
-        >
-          Cancel
-        </button>
+        <div className="flex flex-row gap-6 w-full justify-center">
+          <button
+            onClick={onClose}
+            className="btn w-[214px] text-[#52525B] bg-white rounded-lg"
+          >
+            Отменить
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="btn w-[214px] text-black bg-[#14B8A6] text-[#FAFAFA] hover:text-[#52525B] rounded-lg"
+          >
+            Добавить
+          </button>
+        </div>
       </div>
     </div>,
     document.body

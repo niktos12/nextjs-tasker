@@ -1,24 +1,35 @@
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { Install } from '../Icons/Install/Install';
-interface ModalProps{
-    isOpen: boolean
-    onClose: () => void
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Install } from "../Icons/Install/Install";
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
-export default function ModalFile({ isOpen, onClose }:ModalProps) {
+
+export default function ModalFile({ isOpen, onClose }: ModalProps) {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';  // Блокировка прокрутки при открытом модальном окне
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-lg p-16">
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-lg p-16"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-4xl font-bold">Добавления файла</h2>
         </div>
@@ -28,24 +39,23 @@ export default function ModalFile({ isOpen, onClose }:ModalProps) {
           className="w-full border border-zinc-400 text-sm px-4 py-3 mb-4 rounded-lg"
         />
         <div className="border-2 border-dashed border-gray-300 p-6 rounded-lg text-center mb-6 flex flex-col items-center">
-            <Install/>
-            <p className="mt-2 text-sm text-gray-500">
+          <Install />
+          <p className="mt-2 text-sm text-gray-500">
             Перетащите файл или нажмите чтобы загрузить файл.
           </p>
-          <label htmlFor="">
+          <label htmlFor="file-upload" className="cursor-pointer">
             <input
-            type="file"
-            className="mt-2 block w-full text-sm text-gray-500
-            hidden
+              id="file-upload"
+              type="file"
+              className="mt-2 block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
             file:text-sm file:font-semibold
             file:bg-teal-500 file:text-white
             hover:file:bg-teal-600
             "
-          />
+            />
           </label>
-          
         </div>
         <div className="flex gap-6">
           <button
@@ -60,6 +70,6 @@ export default function ModalFile({ isOpen, onClose }:ModalProps) {
         </div>
       </div>
     </div>,
-    document.body // Здесь модальное окно будет вставлено в DOM
+    document.body
   );
 }
