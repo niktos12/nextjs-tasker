@@ -34,10 +34,10 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   onClose,
   task,
 }) => {
-  if (!isOpen) return null;
   const [openFileModal, setOpenFileModal] = useState(false);
   const { tasks, moveTask, updateTask } = useTaskStore();
   const currentTask = tasks.find((t) => t.id === task?.id);
+
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     moveTask(task!.id, e.target.value as Task["status"]);
   };
@@ -49,6 +49,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     updateTask({ ...task!, priority: e.target.value });
   };
+  if (!isOpen) return null;
   return ReactDOM.createPortal(
     <motion.div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
