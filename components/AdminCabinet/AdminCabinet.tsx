@@ -1,17 +1,13 @@
 "use client";
 
 import Header from "@/components/Header/Header";
-import { ArrowDown } from "@/components/Icons/ArrowDown/ArrowDown";
 import { CloseEye } from "@/components/Icons/CloseEye/CloseEye";
-import { Ellipsis } from "@/components/Icons/Ellipsis/Ellipsis";
 import { FullEye } from "@/components/Icons/FullEye/FullEye";
-import { Search } from "@/components/Icons/Search/Search";
-import ModalFile from "@/components/ModalFile/ModalFile";
 import { Statistic } from "@/components/Statistic/Statistic";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Cabinet: React.FC = () => {
+const AdminCabinet: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -25,26 +21,24 @@ const Cabinet: React.FC = () => {
   };
   return (
     <div className="container flex flex-col gap-[50px]">
-      <Link href={"/adminLk"}>Админка</Link>
-      <Header />
       <div className="flex justify-between mb-20">
         <div className="flex flex-col gap-12">
           <h1 className="text-[32px] font-semibold">Личный кабинет</h1>
           <div className="flex flex-col gap-16 w-[550px]">
             <div className="flex gap-4 w-[550px] h-[151px] items-center">
               <div className="flex flex-col gap-1">
-                <img src="/picture.png" alt="" />
+                <img src="/Аватары.png" alt="" className="w-full h-full"/>
                 <button className="text-xs font-[600] w-full bg-zinc-100 py-[2px] rounded-[4px]">
                   Изменить фото
                 </button>
               </div>
               <div className="flex flex-col gap-4 font-medium text-zinc-600">
-                <p className="text-sm text-zinc-400">Исполнитель</p>
+                <p className="text-sm text-teal-500">Супер Администратор</p>
                 <p className="bg-zinc-100 w-[403px] rounded-lg h-12 p-3">
-                  Олег
+                  Никита
                 </p>
                 <p className="bg-zinc-100 w-[403px] rounded-lg h-12 p-3">
-                  Олегов
+                  Шилов
                 </p>
               </div>
             </div>
@@ -125,4 +119,4 @@ const Cabinet: React.FC = () => {
     </div>
   );
 };
-export default Cabinet;
+export default AdminCabinet;
