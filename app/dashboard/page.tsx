@@ -21,8 +21,7 @@ interface Task {
 const Dashboard: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-
-  const addTask = useTaskStore((state) => state.addTask);
+  const { addTask } = useTaskStore();
 
   const handleCreateTask = (task: Task) => {
     addTask(task);
@@ -31,14 +30,14 @@ const Dashboard: React.FC = () => {
   };
 
   const handleOpenModal = () => {
-    setSelectedTask(null); 
+    setSelectedTask(null);
     setIsModalOpen(true);
   };
 
   return (
     <div className="container flex flex-col">
-      <Header/>
-      <TaskTabs title="Таблица" onOpenModal={handleOpenModal}/>
+      <Header />
+      <TaskTabs title="Таблица" onOpenModal={handleOpenModal} />
       <TaskList />
       <TaskFormModal
         isOpen={isModalOpen}

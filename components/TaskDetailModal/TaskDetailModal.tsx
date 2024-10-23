@@ -37,8 +37,6 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   if (!isOpen) return null;
   const [openFileModal, setOpenFileModal] = useState(false);
   const { tasks, moveTask, updateTask } = useTaskStore();
-  // const moveTask = useTaskStore((state) => state.moveTask);
-  // const updateTask = useTaskStore((state) => state.updateTask);
   const currentTask = tasks.find((t) => t.id === task?.id);
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     moveTask(task!.id, e.target.value as Task["status"]);

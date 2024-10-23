@@ -12,6 +12,7 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { login } = useAuthStore();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -20,9 +21,6 @@ const Register: React.FC = () => {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-
-  
-  const login = useAuthStore((state) => state.login);
 
   const handleRegister = () => {
     login();
