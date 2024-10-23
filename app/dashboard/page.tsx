@@ -35,6 +35,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="p-4">
+      <Link href={'/lk'}>Личный кабинет</Link>
       <Link href={'/kanban'}>Kanban</Link>
       <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
       <button onClick={handleOpenModal} className="btn btn-primary mb-4">

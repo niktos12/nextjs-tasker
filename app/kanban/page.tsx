@@ -66,7 +66,7 @@ const KanbanBoard: FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="flex flex-col items-center p-4 container">
         <Header/>
       <Link href={"/dashboard"}>dashboard</Link>
       <button onClick={handleOpenModal} className="btn btn-primary mb-4">
