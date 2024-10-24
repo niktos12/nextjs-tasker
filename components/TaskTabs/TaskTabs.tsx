@@ -72,7 +72,7 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
         <div className="h-[41px] w-[1px] bg-[#D4D4D8]"></div>
         <button
           onClick={onOpenModal}
-          className="bg-[#27272A] text-[#F4F4F5] flex flex-row gap-1 font-medium p-4 rounded-[10px] h-11 items-center"
+          className="btn bg-[#27272A] text-[#F4F4F5] flex flex-row gap-1 font-medium rounded-[10px] h-11 items-center text-[#5252]"
         >
           <Plus />
           Добавить задачу
