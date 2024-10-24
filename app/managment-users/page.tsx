@@ -1,5 +1,6 @@
 "use client";
-
+import { useState } from "react";
+import ModalUser from "@/components/ModalUser/ModalUser";
 import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
 import { ArrowsUpDown } from "@/components/Icons/ArrowsUpDown/ArrowsUpDown";
 import { Search } from "@/components/Icons/Search/Search";
@@ -7,6 +8,7 @@ import Settings from "@/components/Icons/Settings/Settings";
 import InfoUser from "@/components/InfoUser/InfoUser";
 
 export default function ManagmentUsers() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="container flex flex-col">
       <AdminHeader />
@@ -23,15 +25,18 @@ export default function ManagmentUsers() {
             <input
               type="text"
               placeholder="Поиск"
-              className="px-4 h-12 border-[1px] border-zinc-200 w-[313px] rounded-lg"
+              className="px-4 h-12 border-[1px] border-zinc-200 w-[313px] rounded-lg relative"
             />
+            <span className="absolute left-[460px] top-[220px]">
+              <Search />
+            </span>
             <div className="flex gap-3 items-center">
               <ArrowsUpDown />
               <p className="text-sm">От А-Я</p>
             </div>
           </div>
           <div className="flex flex-col gap-1 h-[700px]">
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар1.png" alt="" />
@@ -42,9 +47,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] bg-zinc-100 px-3 py-2 rounded-lg">
+            <div className="flex justify-between items-center h-[60px] hover:bg-zinc-100 duration-300 px-3 py-2 rounded-lg">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар2.png" alt="" />
@@ -55,9 +62,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар3.png" alt="" />
@@ -68,9 +77,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар4.png" alt="" />
@@ -81,9 +92,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар5.png" alt="" />
@@ -94,9 +107,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар5.png" alt="" />
@@ -107,9 +122,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар5.png" alt="" />
@@ -120,9 +137,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[217px]">
                   <img src="/Аватар6.png" alt="" />
@@ -133,9 +152,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар7.png" alt="" />
@@ -146,9 +167,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар8.png" alt="" />
@@ -159,9 +182,11 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
-            <div className="flex justify-between items-center h-[60px] px-3 py-2">
+            <div className="flex justify-between items-center h-[60px] px-3 py-2 hover:bg-zinc-100 duration-300">
               <div className="flex gap-16 h-[44px]">
                 <div className="flex gap-3 items-center w-[215px]">
                   <img src="/Аватар9.png" alt="" />
@@ -172,11 +197,14 @@ export default function ManagmentUsers() {
                 </div>
                 <InfoUser />
               </div>
-              <Settings/>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Settings />
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <ModalUser isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

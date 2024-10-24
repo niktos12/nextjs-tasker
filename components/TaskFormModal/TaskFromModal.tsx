@@ -204,7 +204,7 @@ const TaskFormModal: React.FC<TaskFormModalProps> = ({
           </button>
           <button
             onClick={handleSubmit}
-            className="btn w-[214px] text-black bg-[#14B8A6] text-[#FAFAFA] hover:text-[#52525B] rounded-lg"
+            className="btn w-[214px] text-white bg-[#14B8A6] text-[#FAFAFA] hover:text-[#52525B] rounded-lg"
           >
             Добавить
           </button>

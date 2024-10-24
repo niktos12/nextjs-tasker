@@ -84,13 +84,18 @@ const Auth: React.FC = () => {
             <div className="flex flex-col gap-2 font-semibold">
               <button
                 onClick={handleRegister}
-                className="w-full bg-teal-500 text-white p-2 rounded-xl"
+                className="w-full bg-teal-500 text-white p-2 rounded-xl hover:text-[#52525B] btn"
               >
                 Войти
               </button>
               <Link href={"/register"}>
-                <button className="w-full bg-white text-black p-2 rounded-xl">
+                <button className="w-full bg-white text-black p-2 rounded-xl btn">
                   Регистрация
+                </button>
+              </Link>
+              <Link href={'/admin-lk'}>
+                <button className="w-full bg-white text-black p-2 rounded-xl btn">
+                  Личный кабинет Администратора
                 </button>
               </Link>
             </div>

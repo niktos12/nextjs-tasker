@@ -6,10 +6,11 @@ import { FullEye } from "@/components/Icons/FullEye/FullEye";
 import { Statistic } from "@/components/Statistic/Statistic";
 import Link from "next/link";
 import React, { useState } from "react";
+import EmailChangeModal from "../ChangeMail/ChangeMail";
 
 const AdminCabinet: React.FC = () => {
   const [open, setOpen] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -27,7 +28,7 @@ const AdminCabinet: React.FC = () => {
           <div className="flex flex-col gap-16 w-[550px]">
             <div className="flex gap-4 w-[550px] h-[151px] items-center">
               <div className="flex flex-col gap-1">
-                <img src="/Аватары.png" alt="" className="w-full h-full"/>
+                <img src="/Аватары.png" alt="" className="w-full h-full" />
                 <button className="text-xs font-[600] w-full bg-zinc-100 py-[2px] rounded-[4px]">
                   Изменить фото
                 </button>
@@ -86,7 +87,7 @@ const AdminCabinet: React.FC = () => {
                     </span>
                   </div>
                 </div>
-                <button className="bg-teal-500 rounded-lg p-[10px] text-white">
+                <button className="bg-teal-500 rounded-lg p-[10px] text-white hover:text-[#52525B] btn">
                   Сохранить
                 </button>
               </div>
@@ -99,7 +100,10 @@ const AdminCabinet: React.FC = () => {
                     className="w-full p-3 border-zinc-200 border-[1px] rounded-xl"
                   />
                 </div>
-                <button className="bg-teal-500 rounded-lg p-[10px] text-white">
+                <button
+                  className="bg-teal-500 rounded-lg p-[10px] text-white hover:text-[#52525B] btn"
+                  onClick={() => setIsModalOpen(true)}
+                >
                   Сохранить
                 </button>
               </div>
@@ -108,7 +112,9 @@ const AdminCabinet: React.FC = () => {
         </div>
 
         <div className="w-[823px] flex flex-col gap-8">
-          <h1 className="text-2xl font-semibold h-12 flex items-center">Статистика</h1>
+          <h1 className="text-2xl font-semibold h-12 flex items-center">
+            Статистика
+          </h1>
           <div className="flex flex-col gap-3">
             <Statistic />
             <Statistic />
@@ -116,6 +122,10 @@ const AdminCabinet: React.FC = () => {
           </div>
         </div>
       </div>
+      <EmailChangeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

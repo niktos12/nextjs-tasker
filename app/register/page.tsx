@@ -85,12 +85,12 @@ const Register: React.FC = () => {
             <div className="flex flex-col gap-2 font-semibold">
               <button
                 onClick={handleRegister}
-                className="w-full bg-teal-500 text-white p-2 rounded-xl"
+                className="w-full bg-teal-500 text-white p-2 rounded-xl hover:text-[#52525B] btn"
               >
                 Регистрация
               </button>
               <Link href={"/auth"}>
-                <button className="w-full bg-white text-black p-2 rounded-xl">
+                <button className="w-full bg-white text-black p-2 rounded-xl btn">
                   Авторизация
                 </button>
               </Link>

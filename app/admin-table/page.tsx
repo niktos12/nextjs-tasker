@@ -1,6 +1,7 @@
 "use client";
 
 import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
+import { Search } from "@/components/Icons/Search/Search";
 import InfoTask from "@/components/InfoTask/InfoTask";
 
 export default function adminTable() {
@@ -13,17 +14,20 @@ export default function adminTable() {
           <input
             type="text"
             placeholder="Поиск"
-            className="px-4 h-12 border-[1px] border-zinc-200 w-[313px] rounded-lg"
+            className="px-4 h-12 border-[1px] border-zinc-200 w-[313px] rounded-lg relative"
           />
+          <span className="absolute left-[460px] top-[220px]">
+            <Search />
+          </span>
         </div>
         <div className="flex flex-col gap-4">
-            <InfoTask/>
-            <InfoTask/>
-            <InfoTask/>
-            <InfoTask/>
-            <InfoTask/>
-            <InfoTask/>
-            <InfoTask/>
+          <InfoTask />
+          <InfoTask />
+          <InfoTask />
+          <InfoTask />
+          <InfoTask />
+          <InfoTask />
+          <InfoTask />
         </div>
       </div>
     </div>

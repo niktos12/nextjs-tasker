@@ -1,5 +1,6 @@
 "use client";
-
+import { useState } from 'react';
+import CreateProject from '@/components/CreateProject/CreateProject';
 import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
 import GreenRestangle from "@/components/Icons/GreenRestangle/GreenRestangle";
 import OrangeRestagnle from "@/components/Icons/OrangeRestangle/OrangeRestangle";
@@ -8,6 +9,7 @@ import RedRestangle from "@/components/Icons/RedRestangle/RedRestangle";
 import ProjectCard from "@/components/ProjectCard/ProjectCard";
 
 export default function adminProject() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="container">
       <AdminHeader />
@@ -36,7 +38,7 @@ export default function adminProject() {
               </div>
             </div>
           </div>            
-            <button className="flex p-3 gap-1 bg-black text-white rounded-[10px]"><Plus/> Добавить проект</button>
+            <button onClick={() => setIsModalOpen(true)} className="btn hover:text-[#52525B] flex p-3 gap-1 bg-black text-white rounded-[10px]"><Plus/> Добавить проект</button>
         </div>
         <div className="bg-zinc-50 rounded-[20px] p-8 w-[1471px] h-fit grid-cols-3">
           <div className="flex justify-between">
@@ -121,6 +123,7 @@ export default function adminProject() {
           </div>
         </div>
       </div>
+      <CreateProject isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
     </div>
   );
 }
