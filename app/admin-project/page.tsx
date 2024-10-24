@@ -8,7 +8,7 @@ import { Plus } from "@/components/Icons/Plus/Plus";
 import RedRestangle from "@/components/Icons/RedRestangle/RedRestangle";
 import ProjectCard from "@/components/ProjectCard/ProjectCard";
 
-export default function adminProject() {
+const AdminProject = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="container">
@@ -127,3 +127,4 @@ export default function adminProject() {
     </div>
   );
 }
+export default AdminProject;

@@ -26,7 +26,7 @@ const Cabinet: React.FC = () => {
   };
   return (
     <div className="container flex flex-col gap-[50px]">
-      <Link href={"/adminLk"}>Админка</Link>
+      <Link href={"/admin-lk"}>Админка</Link>
       <Header />
       <div className="flex justify-between mb-20">
         <div className="flex flex-col gap-12">

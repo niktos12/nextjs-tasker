@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Search } from "../Icons/Search/Search";
 
 const Header = () => {
   return (
