@@ -175,7 +175,7 @@ const TaskList: React.FC = () => {
           : tasks.map((task) => (
               <div
                 key={task.id}
-                className="border-b border-gray-200 rounded-lg px-8 py-[20px] gap-3 my-2 cursor-pointer  bg-white flex flex-row items-center"
+                className="border-b border-gray-200 rounded-lg px-8 py-[20px] gap-3 my-2 cursor-pointer  bg-white flex flex-row items-center hover:bg-gray-100"
               >
                 <DropdownMenu>
                   <DropdownMenuTrigger>

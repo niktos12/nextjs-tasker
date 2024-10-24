@@ -34,17 +34,18 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
         <div className="tabs bg-[#F4F4F5] rounded-[10px] p-1">
           <a
             className={`tab tab-bordered ${
-              pathname === "/kanban" ? "bg-white" : "hover:bg-white duration-300"
+              pathname === "/kanban"
+                ? "bg-white"
+                : "hover:bg-white duration-300"
             }`}
             onClick={() => handleTabChange("/kanban")}
           >
             Задачи
           </a>
           <a
-            className={`tab tab-bordered ${
+            className={`tab tab-bordered disabled ${
               pathname === "/grant" ? "bg-white" : "hover:bg-white duration-300"
             }`}
-            onClick={() => handleTabChange("/grant")}
           >
             Грант
           </a>
@@ -64,7 +65,6 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
                 ? "bg-white"
                 : "hover:bg-white duration-300"
             }`}
-            onClick={() => handleTabChange("/calendar")}
           >
             Календарь
           </a>
@@ -72,7 +72,7 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
         <div className="h-[41px] w-[1px] bg-[#D4D4D8]"></div>
         <button
           onClick={onOpenModal}
-          className="btn bg-[#27272A] text-[#F4F4F5] flex flex-row gap-1 font-medium rounded-[10px] h-11 items-center text-[#5252]"
+          className="btn bg-[#27272A] text-[#F4F4F5] flex flex-row gap-1 font-medium rounded-[10px] h-11 items-center hover:text-[#27272A]"
         >
           <Plus />
           Добавить задачу
