@@ -9,7 +9,6 @@ import React, { useState } from "react";
 import EmailChangeModal from "../ChangeMail/ChangeMail";
 
 const AdminCabinet: React.FC = () => {
-  const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);

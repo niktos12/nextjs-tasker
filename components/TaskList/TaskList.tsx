@@ -33,6 +33,13 @@ const TaskList: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalAddTask, setIsModalAddTask] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -43,14 +50,6 @@ const TaskList: React.FC = () => {
     setIsModalAddTask(false);
     setSelectedTask(null);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleEditTask = (task: Task) => {
     setSelectedTask(task);

@@ -8,8 +8,6 @@ interface ModalProps {
 }
 
 const ModalUser: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -17,10 +15,17 @@ const ModalUser: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
+  if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50" onClick={onClose}>
-      <div className="bg-white rounded-[20px] flex flex-col gap-8 w-[581px] p-16 relative shadow-lg" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-[20px] flex flex-col gap-8 w-[581px] p-16 relative shadow-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-4xl font-bold mb-4">Олег Олегов</h2>
         <div className="flex flex-col gap-5">
           <div>
@@ -61,11 +66,11 @@ const ModalUser: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   <div className="flex gap-4">
                     <span className="bg-teal-50 text-black text-sm px-2 py-1 rounded-lg flex gap-2 items-center">
                       Хакатон
-                      <Cancel/>
+                      <Cancel />
                     </span>
                     <span className="bg-zinc-100 text-black text-sm px-2 py-1 rounded-lg flex gap-2 items-center">
                       Покушать
-                      <Cancel/>
+                      <Cancel />
                     </span>
                   </div>
                 </div>

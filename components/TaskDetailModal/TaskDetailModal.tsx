@@ -46,10 +46,6 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
     updateTask({ ...task!, complexity: e.target.value });
   };
 
-  const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    updateTask({ ...task!, priority: e.target.value });
-  };
-
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(

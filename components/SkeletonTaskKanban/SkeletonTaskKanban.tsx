@@ -11,7 +11,6 @@ const SkeletonTaskKanban: React.FC = () => {
           <div className="flex flex-row gap-2 items-center h-[32px]">
             <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
             <div className="flex flex-row gap-1 items-center bg-[#F4F4F5] px-2 py-1 rounded-lg">
-              {/* <div className="w-4 h-4 bg-gray-300 rounded-full"></div> */}
               <div className="w-[123px] h-6 bg-gray-300 rounded-md"></div>
             </div>
           </div>
