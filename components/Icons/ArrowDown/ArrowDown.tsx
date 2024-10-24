@@ -10,9 +10,9 @@ export function ArrowDown() {
       <path
         d="M6.17383 9.47656L12.1738 15.4766L18.1738 9.47656"
         stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

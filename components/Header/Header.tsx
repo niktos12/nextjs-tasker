@@ -10,11 +10,23 @@ const Header = () => {
           <p className="font-semibold">Олег Олегов</p>
         </Link>
       </div>
-      <div className="flex flex-row items-center justify-center gap-5">
-        <Link href={"/kanban"} className="font-semibold text-[#3F3F46]">
+      <div className="flex flex-row items-center justify-center gap-3">
+        <Link
+          href={"/project"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
+          Проекты
+        </Link>
+        <Link
+          href={"/kanban"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
           Задачи
         </Link>
-        <Link href={"/table"} className="font-semibold text-[#3F3F46]">
+        <Link
+          href={"/table"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
           Сводная таблица
         </Link>
       </div>

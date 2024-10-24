@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTaskStore } from "@/store/taskStore";
 import TaskFormModal from "@/components/TaskFormModal/TaskFromModal";
 import { FC } from "react";
@@ -12,6 +12,7 @@ import { SmallPlus } from "@/components/Icons/SmallPlus/SmallPlus";
 import { SmallEye } from "@/components/Icons/SmallEye/SmallEye";
 import TaskDetailModal from "@/components/TaskDetailModal/TaskDetailModal";
 import { Plus } from "@/components/Icons/Plus/Plus";
+import SkeletonTaskKanban from "@/components/SkeletonTaskKanban/SkeletonTaskKanban";
 
 interface Task {
   id: number;
@@ -29,6 +30,15 @@ const KanbanBoard: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleTaskClick = (task: Task) => {
     setSelectedTask(task);
@@ -97,69 +107,80 @@ const KanbanBoard: FC = () => {
       <TaskTabs title="Задачи" onOpenModal={() => setIsAddModalOpen(true)} />
       <div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-[39px] w-full">
-          {statuses.map((status) => (
-            <div
-              key={status}
-              className="bg-base-200 p-4 rounded-[20px] shadow h-fit w-[350px] flex flex-col gap-4"
-            >
-              <div className="flex flex-row items-center justify-between">
-                <div className="flex flex-row gap-1 items-center">
-                  {getStatusIndicator(status)}
-                  <h2 className="text-xl font-bold capitalize">{status}</h2>
-                </div>
-                <SmallPlus />
-              </div>
-
-              {tasks
-                .filter((task) => task.status === status)
-                .map((task) => (
-                  <div
-                    key={task.id}
-                    className="bg-base-100 py-6 px-4 rounded-xl shadow cursor-pointer hover:bg-gray-100"
-                    onClick={() => handleTaskClick(task)}
-                  >
-                    <p className="text-[#A1A1AA] text-sm font-medium">
-                      Приоритет: {task.priority}
-                    </p>
-                    <div className="border w-full mb-4"></div>
-                    <div className="flex w-full">
-                      <div className="flex flex-col gap-4 w-full">
-                        <span className="font-bold">{task.title}</span>
-                        <div className="flex flex-row gap-2 items-center">
-                          <PersonAdd />
-                          <div className="flex flex-row gap-1 items-center bg-[#F4F4F5] px-2 py-1 rounded-lg">
-                            <Person />
-                            <p>Олег Олегов</p>
-                          </div>
-                        </div>
-                        <div className="flex flex-row gap-2 items-center justify-between">
-                          <div className="flex flex-row">
-                            <div className="flex flex-row gap-1 items-center">
-                              <Comment />
-                              <p className="bg-[#F4F4F5] text-[#A1A1AA] rounded-md  p-1 h-[18px] flex items-center">
-                                3
-                              </p>
-                            </div>
-                            <div className="flex flex-row gap-1 items-center">
-                              <SmallEye />
-                              <p className="bg-[#F4F4F5] text-[#A1A1AA] rounded-md p-1 h-[18px] flex items-center">
-                                4
-                              </p>
-                            </div>
-                          </div>
-
-                          <div>{getComplexityIndicator(task.complexity)}</div>
-                        </div>
-                      </div>
-                    </div>
+          {statuses.map((status) => {
+            const taskCount = tasks.filter(
+              (task) => task.status === status
+            ).length;
+            return (
+              <div
+                key={status}
+                className="bg-base-200 p-4 rounded-[20px] shadow h-fit w-[350px] flex flex-col gap-4"
+              >
+                <div className="flex flex-row items-center justify-between">
+                  <div className="flex flex-row gap-1 items-center">
+                    {getStatusIndicator(status)}
+                    <h2 className="text-xl font-bold capitalize">{status}</h2>
                   </div>
-                ))}
-              <p className="flex flex-row items-center text-[#3F3F46] font-semibold gap-1 mt-[26px]">
-                <Plus />
-                Добавить Задачу
-              </p>
-            </div>
-          ))}
+                  <SmallPlus />
+                </div>
+
+                {isLoading
+                  ? Array.from({ length: taskCount }).map((_, index) => (
+                      <SkeletonTaskKanban key={index} />
+                    ))
+                  : tasks
+                      .filter((task) => task.status === status)
+                      .map((task) => (
+                        <div
+                          key={task.id}
+                          className="bg-base-100 py-6 px-4 rounded-xl shadow cursor-pointer hover:bg-gray-100"
+                          onClick={() => handleTaskClick(task)}
+                        >
+                          <p className="text-[#A1A1AA] text-sm font-medium">
+                            Приоритет: {task.priority}
+                          </p>
+                          <div className="border w-full mb-4"></div>
+                          <div className="flex w-full">
+                            <div className="flex flex-col gap-4 w-full">
+                              <span className="font-bold">{task.title}</span>
+                              <div className="flex flex-row gap-2 items-center">
+                                <PersonAdd />
+                                <div className="flex flex-row gap-1 items-center bg-[#F4F4F5] px-2 py-1 rounded-lg">
+                                  <Person />
+                                  <p>Олег Олегов</p>
+                                </div>
+                              </div>
+                              <div className="flex flex-row gap-2 items-center justify-between">
+                                <div className="flex flex-row gap-2">
+                                  <div className="flex flex-row gap-1 items-center">
+                                    <Comment />
+                                    <p className="bg-[#F4F4F5] text-[#A1A1AA] rounded-md  p-1 h-[18px] flex items-center">
+                                      3
+                                    </p>
+                                  </div>
+                                  <div className="flex flex-row gap-1 items-center">
+                                    <SmallEye />
+                                    <p className="bg-[#F4F4F5] text-[#A1A1AA] rounded-md p-1 h-[18px] flex items-center">
+                                      4
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <div>
+                                  {getComplexityIndicator(task.complexity)}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                <p className="flex flex-row items-center text-[#3F3F46] font-semibold gap-1 mt-[26px]">
+                  <Plus />
+                  Добавить Задачу
+                </p>
+              </div>
+            );
+          })}
         </div>
 
         <TaskDetailModal
