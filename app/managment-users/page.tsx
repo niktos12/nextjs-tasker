@@ -27,7 +27,7 @@ export default function ManagmentUsers() {
               placeholder="Поиск"
               className="px-4 h-12 border-[1px] border-zinc-200 w-[313px] rounded-lg relative"
             />
-            <span className="absolute left-[460px] top-[220px]">
+            <span className="absolute left-[340px] top-[220px]">
               <Search />
             </span>
             <div className="flex gap-3 items-center">

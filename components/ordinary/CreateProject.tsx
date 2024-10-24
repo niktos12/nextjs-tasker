@@ -46,7 +46,7 @@ const CreateProject: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="bg-zinc-300 text-black rounded-[10px] w-[144px] text-sm px-4 py-2 focus:ring focus:ring-opacity-50 focus:ring-indigo-600"
+              className="select select-sm bg-zinc-300 text-black rounded-[10px] w-[144px] font-medium  focus:ring focus:ring-opacity-50 focus:ring-indigo-600"
             >
               <option value="">Статус</option>
               <option value="Новая">Новая</option>
