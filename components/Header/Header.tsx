@@ -31,7 +31,7 @@ const Header = () => {
         </Link>
       </div>
       <Link href={"/register"}>
-        <button className="bg-teal-500 text-white font-semibold h-9 px-5 py-1  rounded-xl hover:bg-teal-600 flex items-center">
+        <button className="bg-teal-500 w-[103px] text-white font-semibold h-9 px-5 py-1  rounded-xl hover:bg-teal-600 flex justify-center items-center">
           Выйти
         </button>
       </Link>

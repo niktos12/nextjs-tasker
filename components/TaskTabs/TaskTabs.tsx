@@ -26,7 +26,7 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
       <div className="flex flex-row justify-start w-full items-center gap-8">
         <h1 className="text-[32px] font-semibold">{title}</h1>
 
-        <select className="select select-sm font-semibold text-2xl bg-[#F4F4F5] rounded-[10px]">
+        <select className="select font-semibold text-2xl bg-[#F4F4F5] rounded-[10px] ">
           <option>1 Спринт</option>
         </select>
       </div>
