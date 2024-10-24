@@ -10,23 +10,23 @@ export function Ellipsis() {
       <path
         d="M10.0003 11.3097C10.4606 11.3097 10.8337 10.9366 10.8337 10.4764C10.8337 10.0162 10.4606 9.64307 10.0003 9.64307C9.54009 9.64307 9.16699 10.0162 9.16699 10.4764C9.16699 10.9366 9.54009 11.3097 10.0003 11.3097Z"
         stroke="#A1A1AA"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M10.0003 5.47673C10.4606 5.47673 10.8337 5.10363 10.8337 4.64339C10.8337 4.18315 10.4606 3.81006 10.0003 3.81006C9.54009 3.81006 9.16699 4.18315 9.16699 4.64339C9.16699 5.10363 9.54009 5.47673 10.0003 5.47673Z"
         stroke="#A1A1AA"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M10.0003 17.1432C10.4606 17.1432 10.8337 16.7701 10.8337 16.3099C10.8337 15.8497 10.4606 15.4766 10.0003 15.4766C9.54009 15.4766 9.16699 15.8497 9.16699 16.3099C9.16699 16.7701 9.54009 17.1432 10.0003 17.1432Z"
         stroke="#A1A1AA"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

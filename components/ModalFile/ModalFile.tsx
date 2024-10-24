@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { motion } from "framer-motion";
 import { Install } from "../Icons/Install/Install";
 
 interface ModalProps {
@@ -22,12 +23,19 @@ export default function ModalFile({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
   return createPortal(
-    <div
+    <motion.div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={onClose}
     >
-      <div
+      <motion.div
         className="bg-white rounded-lg p-16"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center mb-6">
@@ -68,8 +76,8 @@ export default function ModalFile({ isOpen, onClose }: ModalProps) {
             Добавить
           </button>
         </div>
-      </div>
-    </div>,
+      </motion.div>
+    </motion.div>,
     document.body
   );
 }
