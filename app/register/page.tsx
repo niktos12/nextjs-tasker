@@ -4,7 +4,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { FullEye } from "@/components/Icons/FullEye/FullEye";
 import { CloseEye } from "@/components/Icons/CloseEye/CloseEye";
-import CheckBox from "@/components/CheckBox/CheckBox";
+import CheckBox from "@/components/ui/CheckBox";
 import Link from "next/link";
 
 const Register: React.FC = () => {

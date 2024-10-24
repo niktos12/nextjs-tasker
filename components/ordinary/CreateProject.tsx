@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { motion } from "framer-motion";
 import { User } from "../Icons/User/User";
 
 interface ProjectModalProps {
@@ -12,11 +13,25 @@ const CreateProject: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50" onClick={onClose}>
-      <div className="bg-white rounded-[20px] w-[581px] p-16 relative shadow-lg flex flex-col gap-8" onClick={(e) => e.stopPropagation()}>
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="bg-white rounded-[20px] w-[581px] p-16 relative shadow-lg flex flex-col gap-8"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-4xl font-semibold">Новый проект</h2>
         <div className="flex flex-col gap-8">
           <div>
@@ -96,8 +111,8 @@ const CreateProject: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
         </div>
-      </div>
-    </div>,
+      </motion.div>
+    </motion.div>,
     document.body
   );
 };

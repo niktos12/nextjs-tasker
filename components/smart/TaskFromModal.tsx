@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import { AddFile } from "../Icons/AddFile/AddFile";
 import { Person } from "../Icons/Person/Person";
-import ModalFile from "@/components/ModalFile/ModalFile";
+import ModalFile from "@/components/ordinary/ModalFile";
 
 interface Task {
   id: number;

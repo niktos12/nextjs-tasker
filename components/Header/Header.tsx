@@ -17,16 +17,16 @@ const Header = () => {
           Проекты
         </Link>
         <Link
-          href={"/kanban"}
-          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
-        >
-          Задачи
-        </Link>
-        <Link
           href={"/table"}
           className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
         >
           Сводная таблица
+        </Link>
+        <Link
+          href={"/kanban"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
+          Задачи
         </Link>
       </div>
       <Link href={"/register"}>

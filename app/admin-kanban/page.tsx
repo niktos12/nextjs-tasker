@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useTaskStore } from "@/store/taskStore";
 import TaskFormModal from "@/components/smart/TaskFromModal";
 import { FC } from "react";
-import Header from "@/components/Header/Header";
-import TaskTabs from "@/components/ordinary/TaskTabs";
 import { PersonAdd } from "@/components/Icons/PersonAdd/PersonAdd";
 import { Person } from "@/components/Icons/Person/Person";
 import { Comment } from "@/components/Icons/Comment/Comment";
@@ -13,6 +11,8 @@ import { SmallEye } from "@/components/Icons/SmallEye/SmallEye";
 import TaskDetailModal from "@/components/ordinary/TaskDetailModal";
 import { Plus } from "@/components/Icons/Plus/Plus";
 import SkeletonTaskKanban from "@/components/ui/SkeletonTaskKanban";
+import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
+import TaskTabsAdmin from "@/components/ordinary/TaskTabsAdmin";
 
 interface Task {
   id: number;
@@ -103,9 +103,9 @@ const KanbanBoard: FC = () => {
 
   return (
     <div className="flex flex-col items-center container">
-      <Header />
+      <AdminHeader />
       <div className="flex flex-col gap-16">
-        <TaskTabs title="Задачи" onOpenModal={() => setIsAddModalOpen(true)} />
+        <TaskTabsAdmin title="Задачи" onOpenModal={() => setIsAddModalOpen(true)} />
         <div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-[39px] w-full">
             {statuses.map((status) => {

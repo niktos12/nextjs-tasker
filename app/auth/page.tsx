@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Manrope } from "next/font/google";
 import { FullEye } from "@/components/Icons/FullEye/FullEye";
 import { CloseEye } from "@/components/Icons/CloseEye/CloseEye";
-import CheckBox from "@/components/CheckBox/CheckBox";
+import CheckBox from "@/components/ui/CheckBox";
 import Image from "next/image";
 import BgImg from "@/components/img/bgImage.png";
 import { url } from "inspector";

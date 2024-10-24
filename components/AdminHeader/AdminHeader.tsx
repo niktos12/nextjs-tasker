@@ -13,14 +13,29 @@ export function AdminHeader() {
           </div>
         </Link>
       </div>
-      <div className="flex flex-row items-center justify-center gap-5">
-        <Link href={"/admin-project"} className="font-semibold text-[#3F3F46]">
+      <div className="flex flex-row items-center justify-center gap-3">
+        <Link
+          href={"/admin-kanban"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
           Задачи
         </Link>
-        <Link href={"/managment-users"} className="font-semibold text-[#3F3F46]">
+        <Link
+          href={"/managment-users"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
           Пользователи
         </Link>
-        <Link href={"/admin-table"} className="font-semibold text-[#3F3F46]">
+        <Link
+          href={"/admin-project"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
+          Проекты
+        </Link>
+        <Link
+          href={"/admin-table"}
+          className="font-semibold text-[#3F3F46] hover:bg-white rounded-xl p-2 duration-300"
+        >
           Сводная таблица
         </Link>
       </div>

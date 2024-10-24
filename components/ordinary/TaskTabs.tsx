@@ -22,7 +22,7 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ onOpenModal, title }) => {
   };
 
   return (
-    <div className="flex items-center justify-start w-full py-4 gap-[18px] flex-col ">
+    <div className="flex items-center justify-start w-full mt-4 gap-[18px] flex-col ">
       <div className="flex flex-row justify-start w-full items-center gap-8">
         <h1 className="text-[32px] font-semibold">{title}</h1>
 

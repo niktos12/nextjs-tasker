@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { useTaskStore } from "../../store/taskStore";
 import TaskFormModal from "@/components/smart/TaskFromModal";
 import TaskList from "@/components/ordinary/TaskList";
-import Link from "next/link";
-import Header from "@/components/Header/Header";
-import TaskTabs from "@/components/ordinary/TaskTabs";
+import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
+import TaskTabsAdmin from "@/components/ordinary/TaskTabsAdmin";
 
 interface Task {
   id: number;
@@ -36,8 +35,8 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="container flex flex-col">
-      <Header />
-      <TaskTabs title="Таблица" onOpenModal={handleOpenModal} />
+      <AdminHeader />
+      <TaskTabsAdmin title="Таблица" onOpenModal={handleOpenModal} />
       <TaskList />
       <TaskFormModal
         isOpen={isModalOpen}

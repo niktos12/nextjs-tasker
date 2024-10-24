@@ -10,16 +10,16 @@ export default function Cancel() {
       <path
         d="M13.918 4.5L4.91797 13.5"
         stroke="#3F3F46"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M4.91797 4.5L13.918 13.5"
         stroke="#3F3F46"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

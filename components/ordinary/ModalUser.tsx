@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { motion } from "framer-motion";
 import Cancel from "../Icons/Cancel/Cancel";
 
 interface ModalProps {
@@ -15,15 +16,23 @@ const ModalUser: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
+
   if (!isOpen) return null;
 
   return createPortal(
-    <div
+    <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={onClose}
     >
-      <div
+      <motion.div
         className="bg-white rounded-[20px] flex flex-col gap-8 w-[581px] p-16 relative shadow-lg"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-4xl font-bold mb-4">Олег Олегов</h2>
@@ -93,8 +102,8 @@ const ModalUser: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>,
+      </motion.div>
+    </motion.div>,
     document.body
   );
 };

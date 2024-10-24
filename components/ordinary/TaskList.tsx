@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useTaskStore } from "@/store/taskStore";
-import SkeletonTask from "../TaskSkeleton/SkeletonTask";
-import TaskFormModal from "../TaskFormModal/TaskFromModal";
-import DeleteTaskModal from "../DeleteTaskModal/DeleteTaskModal";
-import EditTaskModal from "../EditTaskModal/EditTaskModal";
+import SkeletonTask from "../ui/SkeletonTask";
+import TaskFormModal from "../smart/TaskFromModal";
+import DeleteTaskModal from "../smart/DeleteTaskModal";
+import EditTaskModal from "../smart/EditTaskModal";
 import { Ellipsis } from "../Icons/Ellipsis/Ellipsis";
-import TaskDetailModal from "../TaskDetailModal/TaskDetailModal";
+import TaskDetailModal from "./TaskDetailModal";
 import { Plus } from "../Icons/Plus/Plus";
 import {
   DropdownMenu,
@@ -149,7 +149,7 @@ const TaskList: React.FC = () => {
   };
 
   return (
-    <div className="p-4 bg-[#FAFAFA] rounded-lg">
+    <div className="p-4 bg-[#FAFAFA] rounded-lg mt-[75px]">
       <div className="text-[#52525B] text-2xl flex flex-row justify-between">
         <p className="w-1/6 text-center mr-1">Задачи</p>
         <p className="w-1/6 text-center text-xl mr-3 border-r-2 border-[#D4D4D8] font-semibold">

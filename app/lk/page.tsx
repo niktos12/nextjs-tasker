@@ -6,11 +6,11 @@ import { CloseEye } from "@/components/Icons/CloseEye/CloseEye";
 import { Ellipsis } from "@/components/Icons/Ellipsis/Ellipsis";
 import { FullEye } from "@/components/Icons/FullEye/FullEye";
 import { Search } from "@/components/Icons/Search/Search";
-import ModalFile from "@/components/ModalFile/ModalFile";
-import { Statistic } from "@/components/Statistic/Statistic";
+import ModalFile from "@/components/ordinary/ModalFile";
+import { Statistic } from "@/components/ordinary/Statistic";
 import Link from "next/link";
 import React, { useState } from "react";
-import EmailChangeModal from "@/components/ChangeMail/ChangeMail";
+import EmailChangeModal from "@/components/ordinary/ChangeMail";
 
 const Cabinet: React.FC = () => {
   const [open, setOpen] = useState(false);

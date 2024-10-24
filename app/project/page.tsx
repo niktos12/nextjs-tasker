@@ -1,14 +1,18 @@
+"use client";
+import CreateProject from "@/components/ordinary/CreateProject";
 import Header from "@/components/Header/Header";
 import GreenRestangle from "@/components/Icons/GreenRestangle/GreenRestangle";
 import OrangeRestagnle from "@/components/Icons/OrangeRestangle/OrangeRestangle";
 import RedRestangle from "@/components/Icons/RedRestangle/RedRestangle";
-import ProjectCard from "@/components/ProjectCard/ProjectCard";
+import ProjectCard from "@/components/ordinary/ProjectCard";
 import { Plus } from "lucide-react";
+import { useState } from "react";
 
 const Project = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="container">
-        <Header/>
+      <Header />
       <div className="flex flex-col gap-8 p-8">
         <div className="flex items-center justify-between">
           <div className="flex gap-8 ">
@@ -34,7 +38,10 @@ const Project = () => {
               </div>
             </div>
           </div>
-          <button className="flex p-3 gap-1 bg-black text-white rounded-[10px]">
+          <button
+            className="btn hover:text-[#52525B] flex p-3 gap-1 bg-black text-white rounded-[10px] font-medium"
+            onClick={() => setIsModalOpen(true)}
+          >
             <Plus /> Добавить проект
           </button>
         </div>
@@ -121,6 +128,10 @@ const Project = () => {
           </div>
         </div>
       </div>
+      <CreateProject
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

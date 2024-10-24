@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import { AddFile } from "../Icons/AddFile/AddFile";
-import ModalFile from "../ModalFile/ModalFile";
+import ModalFile from "./ModalFile";
 import { PersonAdd } from "../Icons/PersonAdd/PersonAdd";
 import { Person } from "../Icons/Person/Person";
 import { useTaskStore } from "@/store/taskStore";
@@ -63,14 +63,14 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
         />
       )}
       <motion.div
-        className="bg-white p-6 rounded-[20px] shadow-md w-[1024px] flex flex-col gap-4"
+        className="bg-white p-16 rounded-[20px] shadow-md w-[1024px] flex flex-col gap-4"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1">
           <p className="text-[#A1A1AA] bg-[#F4F4F5] px-2 py-1 rounded w-[72px] text-xs">
             Название
           </p>

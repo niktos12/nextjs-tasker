@@ -1,12 +1,12 @@
 "use client";
-import { useState } from 'react';
-import CreateProject from '@/components/CreateProject/CreateProject';
+import { useState } from "react";
+import CreateProject from "@/components/ordinary/CreateProject";
 import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
 import GreenRestangle from "@/components/Icons/GreenRestangle/GreenRestangle";
 import OrangeRestagnle from "@/components/Icons/OrangeRestangle/OrangeRestangle";
 import { Plus } from "@/components/Icons/Plus/Plus";
 import RedRestangle from "@/components/Icons/RedRestangle/RedRestangle";
-import ProjectCard from "@/components/ProjectCard/ProjectCard";
+import ProjectCard from "@/components/ordinary/ProjectCard";
 
 const AdminProject = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,8 +37,13 @@ const AdminProject = () => {
                 <p className="flex items-center">Низкая</p>
               </div>
             </div>
-          </div>            
-            <button onClick={() => setIsModalOpen(true)} className="btn hover:text-[#52525B] flex p-3 gap-1 bg-black text-white rounded-[10px]"><Plus/> Добавить проект</button>
+          </div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="btn hover:text-[#52525B] flex p-3 gap-1 bg-black text-white rounded-[10px]"
+          >
+            <Plus /> Добавить проект
+          </button>
         </div>
         <div className="bg-zinc-50 rounded-[20px] p-8 w-[1471px] h-fit grid-cols-3">
           <div className="flex justify-between">
@@ -123,8 +128,11 @@ const AdminProject = () => {
           </div>
         </div>
       </div>
-      <CreateProject isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+      <CreateProject
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
-}
+};
 export default AdminProject;

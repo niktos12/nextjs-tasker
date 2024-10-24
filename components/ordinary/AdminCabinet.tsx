@@ -3,10 +3,10 @@
 import Header from "@/components/Header/Header";
 import { CloseEye } from "@/components/Icons/CloseEye/CloseEye";
 import { FullEye } from "@/components/Icons/FullEye/FullEye";
-import { Statistic } from "@/components/Statistic/Statistic";
+import { Statistic } from "@/components/ordinary/Statistic";
 import Link from "next/link";
 import React, { useState } from "react";
-import EmailChangeModal from "../ChangeMail/ChangeMail";
+import EmailChangeModal from "./ChangeMail";
 
 const AdminCabinet: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import ModalUser from "@/components/ModalUser/ModalUser";
+import ModalUser from "@/components/ordinary/ModalUser";
 import { AdminHeader } from "@/components/AdminHeader/AdminHeader";
 import { ArrowsUpDown } from "@/components/Icons/ArrowsUpDown/ArrowsUpDown";
 import { Search } from "@/components/Icons/Search/Search";
 import Settings from "@/components/Icons/Settings/Settings";
-import InfoUser from "@/components/InfoUser/InfoUser";
+import InfoUser from "@/components/ordinary/InfoUser";
 
 export default function ManagmentUsers() {
   const [isModalOpen, setIsModalOpen] = useState(false);
